@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<% include templates/header.ejs %>
+<body>
+
+<form action="/payment/addPayment" method="post" enctype="multipart/form-data">
+
+    <label for="UserId">Name</label>
+    <input type="text" class="form-control" id="userid" name="userid"><br>
+
+    <label for="paymentImage">Image</label>
+    <input type="file" name="paymentImage"><br>
+
+</form>
+
+</body>
+</html>

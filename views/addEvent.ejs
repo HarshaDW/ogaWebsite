@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Event</title>
+    <link rel='stylesheet' href='/public/stylesheets/style.css'/>
+</head>
+
+<% include templates/header.ejs %>
+
+<body>
+
+<form action="/addEvent/newEvent" method="post" enctype="multipart/form-data">
+
+    <label for="eventName">Name</label>
+    <input type="text" class="form-control" id="eventName" name="event"><br>
+
+    <label for="eventImage">Image</label>
+    <input type="file" name="eventImage"><br>
+
+
+    <label for="eventDescription">Description</label>
+    <input type="text" class="form-control" id="eventDescription" name="description"><br>
+
+    <label for="eventDate">Date</label>
+    <input type="text" class="form-control" id="eventDate" name="date"><br>
+
+    <input type="checkbox" name="sendSMS" value="SMS"> Notify Registered Users via SMS<br>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+</html>
