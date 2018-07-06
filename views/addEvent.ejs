@@ -8,26 +8,27 @@
 <% include templates/header.ejs %>
 
 <body>
-
+<div class="container" align="center">
 <form action="/addEvent/newEvent" method="post" enctype="multipart/form-data">
 
     <label for="eventName">Name</label>
-    <input type="text" class="form-control" id="eventName" name="event"><br>
+    <input type="text" class="form-control" id="eventName" name="event" size="10"><br>
 
     <label for="eventImage">Image</label>
-    <input type="file" name="eventImage"><br>
+    <input type="file" name="eventImage" size="35"><br>
 
 
     <label for="eventDescription">Description</label>
-    <input type="text" class="form-control" id="eventDescription" name="description"><br>
+    <input type="text" class="form-control" id="eventDescription" name="description" size="10"><br>
 
     <label for="eventDate">Date</label>
-    <input type="text" class="form-control" id="eventDate" name="date"><br>
+    <input type="text" class="form-control" id="eventDate" name="date" size="35"><br>
 
-    <input type="checkbox" name="sendSMS" value="SMS"> Notify Registered Users via SMS<br>
+    <input type="checkbox" name="sendSMS" value="SMS" size="35"> Notify Registered Users via SMS<br>
 
     <input type="submit" value="Submit">
 </form>
+    <div class="container" align="center">
 
 
 

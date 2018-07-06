@@ -3,9 +3,11 @@
     <title>Login</title>
     <% include templates/header.ejs %>
 </head>
+<div class="container" align="center">
 <form action="/login/loginUser" method = "post">
     <label for="username">Username</label> <input type="username" id="username" name="username"><br /><br />
     <label for="password">Password:</label> <input type="text" id="password" name="password"><br /><br />
     <button type = "submit">Login</button>
 </form>
+</div>
 </html>

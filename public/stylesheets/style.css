@@ -1683,3 +1683,21 @@ p {
 .navbar-nav li {
     display: inline-block;
 }
+
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border: 1px solid #0073b2;
+    padding: 2%;
+    border-radius: 9px;
+
+.event {
+    flex: 0 0 auto;
+
+    margin-top: 5%;
+
+    background-color: #f9fbfa;
+
+}
+}

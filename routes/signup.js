@@ -21,13 +21,22 @@ router.post('/signUpSubmit', function (req, res) {
     }
 
     console.log(userData);
+    var mobileWithExtention = '+94'+userData.mobile;
 
-    var sql = "INSERT INTO `user`(`username`,`useremail`,`password`,`mobilenum`,`first_name`,`last_name`,`created`) VALUES ('" + userData.username + "','" + userData.email + "','" + userData.password + "','" + userData.mobile + "','" + userData.first_name + "','" + userData.last_name + "','" + userData.created + "')";
+    var sql = "INSERT INTO `user`(`username`,`useremail`,`password`,`mobilenum`,`first_name`,`last_name`,`created`) VALUES ('" + userData.username + "','" + userData.email + "','" + userData.password + "','" + mobileWithExtention + "','" + userData.first_name + "','" + userData.last_name + "','" + userData.created + "')";
 
     dao.connection.query(sql, function (err, result) {
-        //res.redirect('profile/' + result.insertId);
+        ;
         if (err) throw err;
         console.log(result);
+        var obj = JSON.parse(JSON.stringify(result))
+        console.log(obj.insertId);
+        var updateUserRoleSQL = "INSERT INTO `user_role`(`userID`,`RoleID`) VALUES ('" + obj.insertId + "','" + 2 + "')";
+        dao.connection.query(updateUserRoleSQL, function(err, result){
+            if (err) throw err;
+            console.log(result);
+        })
+        res.redirect('/login')
 
     });
 

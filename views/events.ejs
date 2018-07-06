@@ -5,24 +5,26 @@
     <link rel='stylesheet' href='/public/stylesheets/style.css' />
 </head>
 
-<% include templates/header.ejs %>
+
+<% include templates/header.ejs %><br><br>
 <body>
 
-<div class="container">
+<div class="scrolling-wrapper-flexbox">
+
 <% for(var i = 0; i < posts.length; i++) { %>
+
+<div class="scrolling-wrapper-flexbox.event" align="center">
+
 <article>
-    <p1><%= posts[i].Name %></p1>
+    <h3><%= posts[i].Name %></h3>
         <p2>Description : <%= posts[i].Description%></p2>
         <p>Date : <%= posts[i].Date%></p>
     <% var imagePath = '/images/Uploads/'+posts[i].Image%>
-    <img src=<%=imagePath%> height="500" width="500">
+    <img src=<%=imagePath%> height="500" width="400">
 </article>
+</div><br><br><br><br>
 <% } %>
-
-
-
-
-</div> <!-- .container -->
+</div>
 
 </body>
 </html>

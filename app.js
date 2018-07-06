@@ -11,6 +11,7 @@ var addEventRouter = require('./routes/addEvent');
 var loginRouter = require('./routes/login');
 var signUpRouter = require('./routes/signUp');
 var paymentRouter = require('./routes/payment');
+var adminRouter = require('./routes/adminPage');
 
 var busboy = require("then-busboy");
 var fileUpload = require('express-fileupload');
@@ -42,7 +43,7 @@ app.use('/addEvent', addEventRouter);
 app.use('/login', loginRouter);
 app.use('/signUp', signUpRouter);
 app.use('/payment', paymentRouter);
-
+app.use('/adminPage', adminRouter);
 
 
 // catch 404 and forward to error handler
