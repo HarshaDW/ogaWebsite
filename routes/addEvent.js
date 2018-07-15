@@ -37,7 +37,6 @@ router.post('/newEvent', urlencodedParser, function (req, res) {
 
     var file = req.files.eventImage;
     var imagePath = file.name;
-    console.log(createEvent.send);
 
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/gif") {
 
