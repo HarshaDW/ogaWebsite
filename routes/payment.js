@@ -18,13 +18,13 @@ router.get('/', function(req, res, next) {
 router.post('/addPayment', urlencodedParser, function (req, res) {
 
     var createPayment = {
-        user: req.body.userid;
-        img: req.body.paymentImage;
+        user: req.body.userid,
+        img: req.body.paymentImage
 
     }
 
     var file = req.files.paymentImage;
-    var imagePath = file.name;
+    var imagePath = file.name.split('/\ /').join('\ ');
 
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/gif") {
 
