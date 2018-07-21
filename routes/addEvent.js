@@ -36,7 +36,8 @@ router.post('/newEvent', urlencodedParser, function (req, res) {
     };
 
     var file = req.files.eventImage;
-    var imagePath = file.name;
+    var imagePath = file.name.split('/\ /').join('\ ');
+    console.log(imagePath);
 
     if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/gif") {
 
@@ -94,6 +95,7 @@ router.post('/newEvent', urlencodedParser, function (req, res) {
         })
 
     }
+    res.redirect('/')
 })
 
 module.exports = router;
