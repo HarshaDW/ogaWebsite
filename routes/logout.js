@@ -1,25 +1,19 @@
 /**
- * Created by harshawijendra on 7/17/18.
+ * Created by harshawijendra on 7/20/18.
  */
 var express = require('express');
 var router = express.Router();
 var dao = require('./dao');
-
+var LocalStrategy = require('passport-local').Strategy;
 var passport = require('passport');
+var flash=require("connect-flash");
 
-router.get('/   ', function(req, res){
+router.get('/', function(req,res){
     req.logout();
-    req.session.destroy();
-    res.redirect('/')
-    console.log(req);
+    req.session.destroy(() => {
+        res.clearCookie('connect.sid');
+        res.redirect('/');
 })
-
-passport.serializeUser(function(user_id, done) {
-    done(null, user_id);
-});
-
-passport.deserializeUser(function(user_id, done) {
-    done(null, user_id);
 });
 
 module.exports = router;

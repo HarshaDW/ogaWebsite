@@ -13,9 +13,8 @@ var signUpRouter = require('./routes/signUp');
 var paymentRouter = require('./routes/payment');
 var adminRouter = require('./routes/adminPage');
 var dao = require('./routes/dao');
-var flash=require("connect-flash");
+var flash = require("connect-flash");
 var logoutRouter = require('./routes/logout');
-
 
 var busboy = require("then-busboy");
 var fileUpload = require('express-fileupload');
@@ -28,6 +27,7 @@ var app = express();
 
 var session = require('express-session');
 var passport = require('passport');
+const expressValidator = require('express-validator');
 var LocalStrategy = require('passport-local').Strategy;
 var MySQLStore = require('express-mysql-session')(session);
 
@@ -70,6 +70,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.use(function (req, res, next) {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    next();
+});
+
+app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req,res);
+    next();
+});
+
+
+// Express Validator Middleware
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param : formParam,
+            msg   : msg,
+            value : value
+        };
+    }
+}));
+
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/events', eventRouter);
@@ -90,11 +119,14 @@ passport.use(new LocalStrategy(
             ;
 
             var obj = JSON.parse(JSON.stringify(results));
-            if(results.length === 0){
-                return done(null, false)
+            console.log(results);
+            if (results.length === 0) {
+                return done(null, false, {message:'Incorrect Credentials'})
             }
-            else if (obj[0].password == password) {
+            else if (obj[0].password === password) {
                 return done(null, {user_id: username});
+            } else if (obj[0].password != password) {
+                return done(null, false, {message: 'Incorrect Password'})
             }
         });
     }
